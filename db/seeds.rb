@@ -103,3 +103,14 @@ Hire.create(
   reference: "More text that I have to write",
   invoice_number: 15
 )
+
+OrderedItem.create(
+  hire_id: 1,
+  size_id: 1
+)
+
+Size.create(
+  ordered_item_id: 1,
+  style_id: 1,
+  size: 5
+)

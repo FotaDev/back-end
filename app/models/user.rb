@@ -9,6 +9,8 @@
 #  name                   :string(255)
 #  surname                :string(255)
 #  telephone              :string(255)
+#  provider               :string(255)      default("email"), not null
+#  uid                    :string(255)      default(""), not null
 #  email                  :string(255)      default(""), not null
 #  encrypted_password     :string(255)      default(""), not null
 #  created_at             :datetime         not null
@@ -28,8 +30,9 @@
 #  failed_attempts        :integer          default(0), not null
 #  unlock_token           :string(255)
 #  locked_at              :datetime
-#  approved               :boolean          default(FALSE), not null
+#  tokens                 :text(65535)
 #
+
 
 class User < ApplicationRecord
   # Include default devise modules.
