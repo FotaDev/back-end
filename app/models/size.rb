@@ -8,5 +8,5 @@
 #
 
 class Size < ApplicationRecord
-  belongs_to :ordered_item
+  belongs_to :style
 end

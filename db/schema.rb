@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227163506) do
+ActiveRecord::Schema.define(version: 20180228143135) do
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -41,18 +41,29 @@ ActiveRecord::Schema.define(version: 20180227163506) do
 
   create_table "ordered_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "hire_id"
-    t.integer "size_id"
+    t.bigint "style_id"
     t.integer "request"
     t.integer "booked"
     t.index ["hire_id"], name: "index_ordered_items_on_hire_id"
+    t.index ["style_id"], name: "index_ordered_items_on_style_id"
   end
 
   create_table "sizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "style_id"
+    t.string "details"
+    t.index ["style_id"], name: "index_sizes_on_style_id"
+  end
+
+  create_table "styles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "ordered_item_id"
-    t.integer "size_id"
-    t.integer "style_id"
-    t.integer "size"
-    t.index ["ordered_item_id"], name: "index_sizes_on_ordered_item_id"
+    t.string "description"
+    t.float "band_price", limit: 24
+    t.float "sale_price", limit: 24
+    t.boolean "saleable"
+    t.boolean "browseable"
+    t.boolean "has_stock"
+    t.string "category"
+    t.index ["ordered_item_id"], name: "index_styles_on_ordered_item_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -91,5 +102,4 @@ ActiveRecord::Schema.define(version: 20180227163506) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  add_foreign_key "hires", "users"
 end

@@ -11,5 +11,10 @@
 
 class OrderedItem < ApplicationRecord
   belongs_to :hire
-  has_many :sizes
+  has_one :style
+
+=begin
+  validates_associated :styles
+  validates :name, presence: true;
+=end
 end

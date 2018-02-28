@@ -106,11 +106,14 @@ Hire.create(
 
 OrderedItem.create(
   hire_id: 1,
-  size_id: 1
+  style_id: 1
+)
+
+Style.create(
+  ordered_item_id: 1
 )
 
 Size.create(
-  ordered_item_id: 1,
   style_id: 1,
-  size: 5
+  details: "Boots size 32 for wee Jimmy"
 )
