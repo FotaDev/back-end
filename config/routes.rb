@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   # , :controllers => { registrations: 'registrations' }
 
 
-  # resources :hires
-  # root to: 'hires#index'
+  resources :hires
+  root to: 'hires#index'
 
 # devise_for :users
 

@@ -39,8 +39,8 @@ class User < ApplicationRecord
 
   include DeviseTokenAuth::Concerns::User
 
-  # belongs_to :group
-  # has_many :hires, through: :group
+  belongs_to :group
+  has_many :hires, through: :group
 
 
 
