@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226121826) do
+ActiveRecord::Schema.define(version: 20180306133113) do
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20180226121826) do
     t.string "unlock_token"
     t.datetime "locked_at"
     t.text "tokens"
+    t.string "confirm_success_url"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

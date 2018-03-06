@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+
+
 Group.create(
   name: "Group 1",
   address: "Fake Street 1"
@@ -103,3 +106,5 @@ Hire.create(
   reference: "More text that I have to write",
   invoice_number: 15
 )
+
+

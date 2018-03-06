@@ -7,10 +7,9 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  database: fotatrue
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: carlos
-  password: kinkin22
+  username: root
+  password: root
   socket: /Applications/MAMP/tmp/mysql/mysql.sock
   timeout: 5000
 
