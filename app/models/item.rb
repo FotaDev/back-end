@@ -12,6 +12,6 @@
 #
 
 class Item < ApplicationRecord
-  belongs_to :ordered_size
-  has_one :size
+  has_many :ordered_size
+  has_many :sizes
 end

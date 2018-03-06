@@ -10,5 +10,5 @@
 
 class OrderedSize < ApplicationRecord
   belongs_to :hire
-  has_one :item
+  belongs_to :item
 end

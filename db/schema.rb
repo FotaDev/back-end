@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 20180306153350) do
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.string "description"
-    t.integer "ordered_sizes_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "size_id"
@@ -52,6 +51,7 @@ ActiveRecord::Schema.define(version: 20180306153350) do
     t.bigint "hire_id"
     t.integer "request"
     t.integer "booked"
+    t.integer "item_id"
     t.index ["hire_id"], name: "index_ordered_sizes_on_hire_id"
   end
 
