@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20180228143135) do
   end
 
   create_table "styles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "ordered_item_id"
     t.string "description"
     t.float "band_price", limit: 24
     t.float "sale_price", limit: 24
@@ -63,7 +62,6 @@ ActiveRecord::Schema.define(version: 20180228143135) do
     t.boolean "browseable"
     t.boolean "has_stock"
     t.string "category"
-    t.index ["ordered_item_id"], name: "index_styles_on_ordered_item_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

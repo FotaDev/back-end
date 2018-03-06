@@ -110,7 +110,7 @@ OrderedItem.create(
 )
 
 Style.create(
-  ordered_item_id: 1
+  description: "Cipka"
 )
 
 Size.create(
