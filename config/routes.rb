@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # , :controllers => { registrations: 'registrations' }
 
 
+  get '/groups' => 'groups#index'
   resources :hires
   root to: 'hires#index'
 
