@@ -1,28 +1,25 @@
 class HiresController < ApplicationController
   before_action :set_account, only: [:show, :update, :edit]
   #before_action :redirect_non_registered
+  respond_to :json
 
 
   def index
+    # if params[:approved] == "false"
+    #   @users = User.where(approved: false)
+    # else
+    #   @users = User.all
+    # end
 
-    if params[:approved] == "false"
-        @users = User.where(approved: false)
-    else
-        @users = User.all
-    end
+     # Copy of current for the moment
+     @Hires = Hire.all
+     @Past_Hires = past_hires(@Hires)
+     @Past_Hires ||= []
 
+     @Current_Hires = current_hires(@Hires)
 
-
-
-    # Copy of current for the moment
-    @Hires = Hire.all
-    @Past_Hires = past_hires(@Hires)
-    @Past_Hires ||= []
-
-    @Current_Hires = current_hires(@Hires)
-
-    @Future_Hires = future_hires(@Hires)
-    #respond_with(@Hires)
+     @Future_Hires = future_hires(@Hires)
+     respond_with(@Hires)
   end
 
   def new
@@ -85,8 +82,8 @@ class HiresController < ApplicationController
   end
 
 
-#  def redirect_non_registered
-#    authenticate_user!
-#    redirect_to root_path if !current_user
-#  end
+  #  def redirect_non_registered
+  #    authenticate_user!
+  #    redirect_to root_path if !current_user
+  #  end
 end

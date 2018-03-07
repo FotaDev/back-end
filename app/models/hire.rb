@@ -4,24 +4,21 @@
 #
 #  id             :integer          not null, primary key
 #  user_id        :integer
+#  group_id       :integer
 #  collect_date   :datetime
 #  return_date    :datetime
 #  status         :integer
 #  band           :integer
 #  reference      :text(65535)
 #  invoice_number :integer
-#  group_id       :integer
 #
-
 
 class Hire < ApplicationRecord
   belongs_to :user
   belongs_to :group
 
   has_many :loans
-  has_many :ordered_items
-
-
+  has_many :orders
   enum status: [:not_collected, :collected, :returned, :not_returned, :lost, :other]
   scope :collected_before, ->(time) { where("collect_date < ?", time) }
   scope :collected_after, ->(time) { where("collect_date > ?", time) }

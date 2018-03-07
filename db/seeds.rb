@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+
+
 Group.create(
   name: "Group 1",
   address: "Fake Street 1"
@@ -104,16 +107,40 @@ Hire.create(
   invoice_number: 15
 )
 
-OrderedItem.create(
-  hire_id: 1,
-  style_id: 1
+Item.create(
+  name: "jacket",
+  description: "jackett",
+  size_id: "1"
 )
 
-Style.create(
-  description: "Cipka"
+Item.create(
+  name: "boot",
+  description: "booooot",
+  size_id: "2"
 )
 
 Size.create(
-  style_id: 1,
-  details: "Boots size 32 for wee Jimmy"
+  size: "small"
 )
+
+Size.create(
+  size: "38"
+)
+
+
+Order.create(
+  hire_id: 1,
+  item_id: 1
+)
+
+Order.create(
+  hire_id: 2,
+  item_id: 1
+)
+
+Order.create(
+  hire_id: 3,
+  item_id: 2
+)
+
+

@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: ordered_items
+# Table name: orders
 #
 #  id      :integer          not null, primary key
 #  hire_id :integer
@@ -8,13 +8,9 @@
 #  booked  :integer
 #
 
-
-class OrderedItem < ApplicationRecord
+class Order < ApplicationRecord
   belongs_to :hire
-  has_one :style
+  belongs_to :item
 
-=begin
-  validates_associated :styles
-  validates :name, presence: true;
-=end
+
 end
