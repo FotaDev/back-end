@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # , :controllers => { registrations: 'registrations' }
 
   get '/sizes' => 'sizes#index'
-
+  get '/groups' => 'groups#index'
   get '/groups' => 'groups#index'
 
   resources :hires
