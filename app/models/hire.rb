@@ -18,7 +18,7 @@ class Hire < ApplicationRecord
   belongs_to :group
 
   has_many :loans
-  has_many :ordered_sizes
+  has_many :orders
   enum status: [:not_collected, :collected, :returned, :not_returned, :lost, :other]
   scope :collected_before, ->(time) { where("collect_date < ?", time) }
   scope :collected_after, ->(time) { where("collect_date > ?", time) }

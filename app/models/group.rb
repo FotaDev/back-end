@@ -7,6 +7,7 @@
 #  address :text(65535)
 #
 
+
 class Group < ApplicationRecord
   has_many :users
   has_many :hires

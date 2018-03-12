@@ -9,9 +9,17 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: root
-  socket: /Applications/MAMP/tmp/mysql/mysql.sock
+  password: cipka
+  socket:   /var/run/mysqld/mysqld.sock
   timeout: 5000
+  #Jacek config:
+  #    username: root
+  #    password: cipka
+  #    socket:   /var/run/mysqld/mysqld.sock
+  #Carlete config:
+  #    username: Carlos
+  #    password: kinkin22
+  #    socket: /Applications/MAMP/tmp/mysql/mysql.sock
 
 development:
   <<: *default

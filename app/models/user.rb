@@ -32,7 +32,7 @@
 #  locked_at              :datetime
 #  tokens                 :text(65535)
 #  confirm_success_url    :string(255)
-#
+
 
 class User < ApplicationRecord
   # Include default devise modules.

@@ -7,8 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-
-
 Group.create(
   name: "Group 1",
   address: "Fake Street 1"
@@ -34,7 +32,6 @@ User.create(
   password: "111111",
   group_id: 2
 )
-
 
 
 # Past Hire
@@ -96,6 +93,7 @@ Hire.create(
   invoice_number: 15
 
 )
+
 Hire.create(
   user_id: 1,
   group_id: 1,
@@ -107,4 +105,44 @@ Hire.create(
   invoice_number: 15
 )
 
+Size.create(
+  details: "small"
+)
 
+Size.create(
+  details: "large"
+)
+
+Size.create(
+  details: "38"
+)
+
+Item.create(
+  description: "jacket",
+  size_id: 1
+)
+
+Item.create(
+  description: "boot",
+  size_id: 3
+)
+
+Order.create(
+  hire_id: 1,
+  item_id: 1
+)
+
+Order.create(
+  hire_id: 1,
+  item_id: 2
+)
+
+Order.create(
+  hire_id: 2,
+  item_id: 1
+)
+
+Order.create(
+  hire_id: 2,
+  item_id: 2
+)

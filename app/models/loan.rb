@@ -11,6 +11,7 @@
 #  updated_at :datetime         not null
 #
 
+
 class Loan < ApplicationRecord
   belongs_to :hire
 end
