@@ -7,6 +7,7 @@
 #  address :text(65535)
 #
 
+
 require 'test_helper'
 
 class GroupTest < ActiveSupport::TestCase

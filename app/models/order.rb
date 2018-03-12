@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: ordered_sizes
+# Table name: orders
 #
 #  id      :integer          not null, primary key
 #  hire_id :integer
@@ -8,7 +8,7 @@
 #  booked  :integer
 #
 
-class OrderedSize < ApplicationRecord
+class Order < ApplicationRecord
   belongs_to :hire
   belongs_to :item
 end
