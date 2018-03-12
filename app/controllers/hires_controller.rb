@@ -10,8 +10,12 @@ class HiresController < ApplicationController
     @Past_Hires = past_hires(@Hires)
     @Past_Hires ||= []
 
-    @Current_Hires = current_hires(@Hires)
+    # Copy of current for the moment
+    @Hires = Hire.all
+    @Past_Hires = past_hires(@Hires)
+    @Past_Hires ||= []
 
+    @Current_Hires = current_hires(@Hires)
     @Future_Hires = future_hires(@Hires)
     respond_with(@Hires)
   end
@@ -33,6 +37,7 @@ class HiresController < ApplicationController
     end
 
   end
+
   def show
 
   end
@@ -66,7 +71,7 @@ class HiresController < ApplicationController
   end
 
   def set_account
-    @Hire = Hire.find(params[:id]) 
+    @Hire = Hire.find(params[:id])
   end
 
   private
