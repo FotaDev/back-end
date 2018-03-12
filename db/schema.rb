@@ -15,6 +15,8 @@ ActiveRecord::Schema.define(version: 20180228143135) do
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
     t.text "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "hires", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -25,18 +27,23 @@ ActiveRecord::Schema.define(version: 20180228143135) do
     t.integer "band"
     t.text "reference"
     t.integer "invoice_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "group_id"
     t.index ["user_id"], name: "index_hires_on_user_id"
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "description"
+    t.integer "size_id"
     t.float "band_price", limit: 24
     t.float "sale_price", limit: 24
     t.boolean "saleable"
     t.boolean "browseable"
     t.boolean "has_stock"
     t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "loans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -54,13 +61,15 @@ ActiveRecord::Schema.define(version: 20180228143135) do
     t.integer "request"
     t.integer "booked"
     t.integer "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["hire_id"], name: "index_orders_on_hire_id"
   end
 
   create_table "sizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "item_id"
     t.string "details"
-    t.index ["item_id"], name: "index_sizes_on_item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

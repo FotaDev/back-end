@@ -2,6 +2,7 @@ class CreateItems < ActiveRecord::Migration[5.1]
   def change
     create_table :items do |t|
       t.string :description
+      t.integer :size_id
       t.float :band_price
       t.float :sale_price
       t.boolean :saleable
