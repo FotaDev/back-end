@@ -5,11 +5,10 @@ class HiresController < ApplicationController
 
 
   def index
-    # if params[:approved] == "false"
-    #   @users = User.where(approved: false)
-    # else
-    #   @users = User.all
-    # end
+    # Copy of current for the moment
+    @Hires = Hire.all
+    @Past_Hires = past_hires(@Hires)
+    @Past_Hires ||= []
 
     # Copy of current for the moment
     @Hires = Hire.all
@@ -17,7 +16,6 @@ class HiresController < ApplicationController
     @Past_Hires ||= []
 
     @Current_Hires = current_hires(@Hires)
-
     @Future_Hires = future_hires(@Hires)
     respond_with(@Hires)
   end
@@ -82,9 +80,4 @@ class HiresController < ApplicationController
     params.require(:hire).permit(:collect_date, :return_date, :status, :band, :reference, :invoice_number, :user_id, :group_id)
   end
 
-
-  #  def redirect_non_registered
-  #    authenticate_user!
-  #    redirect_to root_path if !current_user
-  #  end
 end

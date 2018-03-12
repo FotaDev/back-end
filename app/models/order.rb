@@ -11,6 +11,4 @@
 class Order < ApplicationRecord
   belongs_to :hire
   belongs_to :item
-
-
 end

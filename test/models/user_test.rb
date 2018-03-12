@@ -31,7 +31,7 @@
 #  unlock_token           :string(255)
 #  locked_at              :datetime
 #  tokens                 :text(65535)
-#
+#  confirm_success_url    :string(255)
 
 
 require 'test_helper'

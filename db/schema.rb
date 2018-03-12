@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228143135) do
+ActiveRecord::Schema.define(version: 20180306153350) do
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20180228143135) do
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+<<<<<<< HEAD
     t.string "description"
     t.integer "size_id"
     t.float "band_price", limit: 24
@@ -44,6 +45,13 @@ ActiveRecord::Schema.define(version: 20180228143135) do
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+=======
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "size_id"
+>>>>>>> master
   end
 
   create_table "loans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -61,6 +69,7 @@ ActiveRecord::Schema.define(version: 20180228143135) do
     t.integer "request"
     t.integer "booked"
     t.integer "item_id"
+<<<<<<< HEAD
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["hire_id"], name: "index_orders_on_hire_id"
@@ -68,6 +77,15 @@ ActiveRecord::Schema.define(version: 20180228143135) do
 
   create_table "sizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+=======
+    t.index ["hire_id"], name: "index_ordered_sizes_on_hire_id"
+>>>>>>> master
+  end
+
+  create_table "sizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "size"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -101,6 +119,7 @@ ActiveRecord::Schema.define(version: 20180228143135) do
     t.string "unlock_token"
     t.datetime "locked_at"
     t.text "tokens"
+    t.string "confirm_success_url"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
