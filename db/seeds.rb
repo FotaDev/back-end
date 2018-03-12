@@ -108,14 +108,12 @@ Hire.create(
 )
 
 Item.create(
-  name: "jacket",
-  description: "jackett",
+  description: "jacket",
   size_id: "1"
 )
 
 Item.create(
-  name: "boot",
-  description: "booooot",
+  description: "boot",
   size_id: "2"
 )
 

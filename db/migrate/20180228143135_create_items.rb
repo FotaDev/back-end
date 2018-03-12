@@ -1,6 +1,6 @@
-class CreateStyles < ActiveRecord::Migration[5.1]
+class CreateItems < ActiveRecord::Migration[5.1]
   def change
-    create_table :styles do |t|
+    create_table :items do |t|
       t.string :description
       t.float :band_price
       t.float :sale_price
@@ -8,6 +8,7 @@ class CreateStyles < ActiveRecord::Migration[5.1]
       t.boolean :browseable
       t.boolean :has_stock
       t.string :category
+      t.timestamps
     end
   end
 end

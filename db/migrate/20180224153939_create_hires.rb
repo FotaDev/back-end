@@ -8,6 +8,7 @@ class CreateHires < ActiveRecord::Migration[5.1]
       t.integer :band
       t.text :reference
       t.integer :invoice_number
+      t.timestamps
     end
   end
 end

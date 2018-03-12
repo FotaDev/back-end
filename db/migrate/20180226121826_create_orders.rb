@@ -5,6 +5,7 @@ class CreateOrders < ActiveRecord::Migration[5.1]
       t.integer :request
       t.integer :booked
       t.integer :item_id
+      t.timestamps
     end
   end
 end

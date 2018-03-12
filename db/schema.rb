@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180306153350) do
+ActiveRecord::Schema.define(version: 20180228143135) do
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -30,11 +30,13 @@ ActiveRecord::Schema.define(version: 20180306153350) do
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "name"
     t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "size_id"
+    t.float "band_price", limit: 24
+    t.float "sale_price", limit: 24
+    t.boolean "saleable"
+    t.boolean "browseable"
+    t.boolean "has_stock"
+    t.string "category"
   end
 
   create_table "loans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -56,9 +58,9 @@ ActiveRecord::Schema.define(version: 20180306153350) do
   end
 
   create_table "sizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "size"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "item_id"
+    t.string "details"
+    t.index ["item_id"], name: "index_sizes_on_item_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -90,7 +92,6 @@ ActiveRecord::Schema.define(version: 20180306153350) do
     t.string "unlock_token"
     t.datetime "locked_at"
     t.text "tokens"
-    t.string "confirm_success_url"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -98,5 +99,4 @@ ActiveRecord::Schema.define(version: 20180306153350) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
-  add_foreign_key "hires", "users"
 end

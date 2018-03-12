@@ -12,8 +12,8 @@
 #
 
 class Item < ApplicationRecord
-  has_many :ordered_size
-  has_one :size
+  has_many :ordered_sizes
+  belongs_to :size
 
   validates :name, presence: true
   validates :description, presence: true
