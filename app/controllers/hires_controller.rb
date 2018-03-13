@@ -26,14 +26,10 @@ class HiresController < ApplicationController
 
   def create
     @Hire = Hire.create(hire_params)
-    @Hire.update(user_id: current_user.id)
-    @Hire.update(group_id: current_user.group_id)
 
     if @Hire.save
       flash[:success] = "Created successfully"
-      redirect_to @Hire
-    else
-      render 'new'
+      head :ok
     end
 
   end
