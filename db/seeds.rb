@@ -146,3 +146,7 @@ Order.create(
   hire_id: 2,
   item_id: 2
 )
+
+Stock.create(
+  item_id: 1
+)

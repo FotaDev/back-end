@@ -13,6 +13,7 @@
 
 class Item < ApplicationRecord
   has_many :orders
+  has_many :stocks, through: :size
   belongs_to :size
 
   validates :description, presence: true
