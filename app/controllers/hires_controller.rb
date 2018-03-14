@@ -3,13 +3,7 @@ class HiresController < ApplicationController
   #before_action :redirect_non_registered
   respond_to :json
 
-
   def index
-    # Copy of current for the moment
-    @Hires = Hire.all
-    @Past_Hires = past_hires(@Hires)
-    @Past_Hires ||= []
-
     # Copy of current for the moment
     @Hires = Hire.all
     @Past_Hires = past_hires(@Hires)
@@ -36,10 +30,10 @@ class HiresController < ApplicationController
 
   def show
   @Hire = Hire.find(params[:id])
+  respond_with(@Hire)
   end
 
   def update
-
     if @Hire.update(hire_params)
       redirect_to @Hire
     else
