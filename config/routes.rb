@@ -5,7 +5,8 @@ Rails.application.routes.draw do
 
   get '/sizes' => 'sizes#index'
   get '/groups' => 'groups#index'
-  get '/groups' => 'groups#index'
+  resources :items
+  resources :sizes
 
   resources :hires
   root to: 'hires#index'
