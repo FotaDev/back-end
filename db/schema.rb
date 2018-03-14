@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20180228143135) do
     t.string "name"
     t.string "surname"
     t.string "telephone"
+    t.string "confirm_success_url"
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "email", default: "", null: false
