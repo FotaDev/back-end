@@ -3,7 +3,6 @@ class HiresController < ApplicationController
   #before_action :redirect_non_registered
   respond_to :json
 
-
   def index
     # Copy of current for the moment
     @Hires = Hire.all
