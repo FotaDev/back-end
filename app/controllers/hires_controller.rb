@@ -9,11 +9,6 @@ class HiresController < ApplicationController
     @Past_Hires = past_hires(@Hires)
     @Past_Hires ||= []
 
-    # Copy of current for the moment
-    @Hires = Hire.all
-    @Past_Hires = past_hires(@Hires)
-    @Past_Hires ||= []
-
     @Current_Hires = current_hires(@Hires)
     @Future_Hires = future_hires(@Hires)
     respond_with(@Hires)
@@ -35,10 +30,10 @@ class HiresController < ApplicationController
 
   def show
   @Hire = Hire.find(params[:id])
+  respond_with(@Hire)
   end
 
   def update
-
     if @Hire.update(hire_params)
       redirect_to @Hire
     else

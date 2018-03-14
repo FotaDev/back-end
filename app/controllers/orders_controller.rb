@@ -22,6 +22,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    respond_with(@order)
   end
 
   def set_order

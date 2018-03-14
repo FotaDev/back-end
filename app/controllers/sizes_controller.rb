@@ -22,6 +22,7 @@ class SizesController < ApplicationController
 
   def show
     @size = Size.find(params[:id])
+    respond_with(@size)
   end
 
   def set_size

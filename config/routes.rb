@@ -5,15 +5,6 @@ Rails.application.routes.draw do
 
   get    '/groups' => 'groups#index'
   
-  get    '/hires'          => 'hires#index'
-  get    '/hires/new'      => 'hires#new'
-  get    '/hires/:id'      => 'hires#show'
-  post   '/hires'          => 'hires#create'
-  get    '/hires/:id/edit' => 'hires#edit'
-  patch  '/hires/:id'      => 'hires#update'
-  put    '/hires/:id'      => 'hires#update'
-  delete '/hires/:id'      => 'hires#destroy'
-  
   resources :items
   resources :sizes
   resources :orders
