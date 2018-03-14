@@ -8,6 +8,7 @@ class AddDeviseToUsers < ActiveRecord::Migration[5.1]
       t.string :surname
       t.string :telephone
       t.string :confirm_success_url
+
       ## Required
       t.string :provider, :null => false, :default => "email"
       t.string :uid, :null => false, :default => ""
