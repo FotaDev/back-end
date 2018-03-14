@@ -1,5 +1,5 @@
 class HiresController < ApplicationController
-  before_action :set_account, only: [:show, :update, :edit]
+  before_action :set_hire, only: [:show, :update, :edit]
   #before_action :redirect_non_registered
   respond_to :json
 
@@ -35,7 +35,7 @@ class HiresController < ApplicationController
   end
 
   def show
-
+  @Hire = Hire.find(params[:id])
   end
 
   def update
@@ -66,7 +66,7 @@ class HiresController < ApplicationController
     hires = hires.returned_after(2.years)
   end
 
-  def set_account
+  def set_hire
     @Hire = Hire.find(params[:id])
   end
 
