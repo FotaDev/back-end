@@ -4,14 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/config/routes.rb" line="8" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="941648ab-0e98-4283-b3e6-c8073e2adccd" name="Default" comment="">
+    <list default="true" id="941648ab-0e98-4283-b3e6-c8073e2adccd" name="Default" comment="added controllers and routes to hires">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/hires_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/hires_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/items_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/items_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/orders_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/orders_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/sizes_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/sizes_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/hires/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/hires/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -80,7 +74,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="creating-controllers-item-and-size" />
       </map>
     </option>
     <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
@@ -135,9 +129,9 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="949" />
-    <option name="width" value="980" />
-    <option name="height" value="1031" />
+    <option name="x" value="948" />
+    <option name="width" value="981" />
+    <option name="height" value="1032" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -429,11 +423,18 @@
       <option name="project" value="LOCAL" />
       <updated>1521053615063</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="added controllers and routes to hires">
+      <created>1521057075964</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1521057075964</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="75498000" />
+    <option name="totallyTimeSpent" value="76020000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
@@ -516,7 +517,8 @@
     <MESSAGE value="created Size controller" />
     <MESSAGE value="ignored database.yml file" />
     <MESSAGE value="added orders controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="added orders controller" />
+    <MESSAGE value="added controllers and routes to hires" />
+    <option name="LAST_COMMIT_MESSAGE" value="added controllers and routes to hires" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/models/user.rb">
