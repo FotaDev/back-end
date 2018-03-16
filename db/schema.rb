@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20180313162539) do
     t.integer "request"
     t.integer "booked"
     t.integer "item_id"
+    t.integer "size_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["hire_id"], name: "index_orders_on_hire_id"
