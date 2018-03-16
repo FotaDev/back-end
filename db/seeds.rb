@@ -126,22 +126,26 @@ Item.create(
 
 Order.create(
   hire_id: 1,
-  item_id: 1
+  item_id: 1,
+  size_id: 1
 )
 
 Order.create(
   hire_id: 1,
-  item_id: 2
+  item_id: 2,
+  size_id: 3
 )
 
 Order.create(
   hire_id: 2,
-  item_id: 1
+  item_id: 1,
+  size_id: 2
 )
 
 Order.create(
   hire_id: 2,
-  item_id: 2
+  item_id: 2,
+  size_id: 3
 )
 
 Stock.create(
