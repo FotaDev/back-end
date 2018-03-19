@@ -11,7 +11,6 @@
 class Order < ApplicationRecord
   belongs_to :hire
   belongs_to :item
-  has_one :size
 
-  validates :size_id, presence: true
+  validates :request, presence: true
 end

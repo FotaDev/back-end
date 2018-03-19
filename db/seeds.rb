@@ -7,28 +7,28 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Group.create(
-  name: "Group 1",
-  address: "Fake Street 1"
+  name: 'Group 1',
+  address: 'Fake Street 1'
 )
 Group.create(
-  name: "Group 2",
-  address: "Calle Falsa 2"
+  name: 'Group 2',
+  address: 'Calle Falsa 2'
 )
 Group.create(
-  name: "Group 3",
-  address: "Bacon Street 22"
+  name: 'Group 3',
+  address: 'Bacon Street 22'
 )
 
 User.create(
-  username: "Admin 1",
-  email: "car@los.com",
-  password: "111111",
+  username: 'Admin 1',
+  email: 'car@los.com',
+  password: '111111',
   group_id: 1
 )
 User.create(
-  username: "Admin 2",
-  email: "user2@test.com",
-  password: "111111",
+  username: 'Admin 2',
+  email: 'user2@test.com',
+  password: '111111',
   group_id: 2
 )
 
@@ -41,7 +41,7 @@ Hire.create(
   return_date: Date.today - 1.months,
   status: 2,
   band: 3,
-  reference: "Another text of this Hire",
+  reference: 'Another text of this Hire',
   invoice_number: 15
 )
 
@@ -52,7 +52,7 @@ Hire.create(
   return_date: 1.week.ago - 1.months,
   status: 2,
   band: 3,
-  reference: "Another text of this Hire",
+  reference: 'Another text of this Hire',
   invoice_number: 15
 )
 # Present
@@ -64,8 +64,8 @@ Hire.create(
   return_date: Date.today + 1.week,
   status: 1,
   band: 1,
-  reference: "Lorem Ipsum dolor sit amet",
-  invoice_number: 191212
+  reference: 'Lorem Ipsum dolor sit amet',
+  invoice_number: 191_212
 )
 
 Hire.create(
@@ -75,8 +75,8 @@ Hire.create(
   return_date: Date.today + 1.week,
   status: 0,
   band: 1,
-  reference: "This one has not been collected yet",
-  invoice_number: 191212
+  reference: 'This one has not been collected yet',
+  invoice_number: 191_212
 )
 # Future
 
@@ -87,7 +87,7 @@ Hire.create(
   return_date: Date.tomorrow + 2.weeks,
   status: 3,
   band: 6,
-  reference: "More text that I have to write",
+  reference: 'More text that I have to write',
   invoice_number: 15
 )
 
@@ -98,92 +98,128 @@ Hire.create(
   return_date: Date.tomorrow + 1.weeks,
   status: 3,
   band: 6,
-  reference: "More text that I have to write",
+  reference: 'More text that I have to write',
   invoice_number: 15
 )
 
 Size.create(
-  details: "small"
+  size: 'small'
 )
 
 Size.create(
-  details: "large"
+  size: 'large'
 )
 
 Size.create(
-  details: "38"
+  size: '38'
+)
+
+Size.create(
+  size: 'N/A'
 )
 
 Item.create(
-  description: "jacket",
-  size_id: 1
+  description: 'jacket',
+  size: Size.first
 )
 
 Item.create(
-  description: "boot",
-  size_id: 3
+  description: 'jacket',
+  size: Size.second
+)
+
+Item.create(
+  description: 'trousers',
+  size: Size.first
+)
+
+Item.create(
+  description: 'gloves',
+  size: Size.second
+)
+
+Item.create(
+  description: 'boot',
+  size: Size.third
+)
+
+Item.create(
+  description: 'battery',
+  size: Size.fourth
 )
 
 Order.create(
   hire_id: 1,
   item_id: 1,
-  size_id: 1
+  request: 5
 )
 
 Order.create(
   hire_id: 1,
   item_id: 2,
-  size_id: 3
+  request: 10
 )
 
 Order.create(
   hire_id: 2,
   item_id: 1,
-  size_id: 2
+  request: 3
 )
 
 Order.create(
   hire_id: 2,
-  item_id: 2,
-  size_id: 3
+  item_id: 2
 )
 
 Stock.create(
   item_id: 1,
-  size_id: 1,
+  size: Size.first,
   barcode: 12345,
-  make: "Adidaz",
-  model: "Adidaz Cipkaz"
+  make: 'Adidaz',
+  model: 'Adidaz Cipkaz'
 )
 
 Stock.create(
   item_id: 1,
-  size_id: 2,
+  size: Size.second,
   barcode: 123456,
-  make: "Adidaz",
-  model: "Adidaz Cipkaz"
+  make: 'Adidaz',
+  model: 'Adidaz Cipkaz'
 )
 
 Stock.create(
   item_id: 3,
-  size_id: 3,
+  size: Size.third,
   barcode: 39837,
-  make: "Pumba",
-  model: "Pr0 xP"
+  make: 'Pumba',
+  model: 'Pr0 xP'
 )
 
 Stock.create(
   item_id: 2,
-  size_id: 1,
-  barcode: 00223,
-  make: "Umboro",
-  model: "Umboro Samba"
+  size: Size.second,
+  barcode: 000223,
+  make: 'Umboro',
+  model: 'Umboro Samba'
 )
 
 Stock.create(
   item_id: 2,
-  size_id: 2,
-  barcode: 002233,
-  make: "Umboro",
-  model: "Umboro Samba"
+  size: Size.second,
+  barcode: 0002233,
+  make: 'Umboro',
+  model: 'Umboro Samba'
+)
+
+Stock.create(
+  item_id: 3,
+  size: Size.where(size:"N/A").first,
+  barcode: '',
+  make: 'Philips',
+  model: 'Long Life Battery'
+)
+
+Multistock.create(
+  stock_id: 6,
+  actual_quantity: 150
 )

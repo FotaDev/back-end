@@ -14,7 +14,7 @@
 class Item < ApplicationRecord
   has_many :orders
   has_many :stocks
-  belongs_to :size
+  belongs_to :size, :foreign_key => 'size', :class_name  => 'Size', :primary_key => 'size'
 
   validates :description, presence: true
 end
