@@ -14,7 +14,7 @@ class Multistock < ApplicationRecord
 
   validates :actual_quantity, presence: true
 
-  def as_json(options=nil)
-    super(include: { stock: { include: { item: { include: :size } } } })
+  def as_json(options = nil)
+    super(include: {stock: {include: {item: {include: :size}}}})
   end
 end
