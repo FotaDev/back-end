@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180313162539) do
+ActiveRecord::Schema.define(version: 20180319135815) do
 
   create_table "groups", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -29,13 +29,14 @@ ActiveRecord::Schema.define(version: 20180313162539) do
     t.integer "invoice_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "group_id"
+    t.bigint "group_id"
+    t.index ["group_id"], name: "index_hires_on_group_id"
     t.index ["user_id"], name: "index_hires_on_user_id"
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "size_id"
     t.string "description"
-    t.integer "size_id"
     t.float "band_price", limit: 24
     t.float "sale_price", limit: 24
     t.boolean "saleable"
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 20180313162539) do
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["size_id"], name: "index_items_on_size_id"
   end
 
   create_table "loans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -56,14 +58,23 @@ ActiveRecord::Schema.define(version: 20180313162539) do
     t.index ["hire_id"], name: "index_loans_on_hire_id"
   end
 
+  create_table "multistocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "stock_id"
+    t.integer "actual_quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stock_id"], name: "index_multistocks_on_stock_id"
+  end
+
   create_table "orders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "hire_id"
     t.integer "request"
     t.integer "booked"
-    t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "item_id"
     t.index ["hire_id"], name: "index_orders_on_hire_id"
+    t.index ["item_id"], name: "index_orders_on_item_id"
   end
 
   create_table "sizes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -73,15 +84,15 @@ ActiveRecord::Schema.define(version: 20180313162539) do
   end
 
   create_table "stocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "item_id"
     t.string "barcode"
-    t.integer "item_id"
-    t.integer "size_id"
     t.string "make"
     t.string "model"
     t.integer "condition"
     t.string "comments"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_stocks_on_item_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -91,7 +102,6 @@ ActiveRecord::Schema.define(version: 20180313162539) do
     t.string "name"
     t.string "surname"
     t.string "telephone"
-    t.string "confirm_success_url"
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "email", default: "", null: false
@@ -114,6 +124,7 @@ ActiveRecord::Schema.define(version: 20180313162539) do
     t.string "unlock_token"
     t.datetime "locked_at"
     t.text "tokens"
+    t.string "confirm_success_url"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -121,4 +132,6 @@ ActiveRecord::Schema.define(version: 20180313162539) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "orders", "hires"
+  add_foreign_key "orders", "items"
 end

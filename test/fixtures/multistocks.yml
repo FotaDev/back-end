@@ -1,15 +1,13 @@
 # == Schema Information
 #
-# Table name: groups
+# Table name: multistocks
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  address    :text(65535)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :integer          not null, primary key
+#  stock_id        :integer
+#  actual_quantity :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
-
-
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 

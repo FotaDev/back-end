@@ -9,6 +9,7 @@
 #  name                   :string(255)
 #  surname                :string(255)
 #  telephone              :string(255)
+#  confirm_success_url    :string(255)
 #  provider               :string(255)      default("email"), not null
 #  uid                    :string(255)      default(""), not null
 #  email                  :string(255)      default(""), not null
@@ -31,7 +32,8 @@
 #  unlock_token           :string(255)
 #  locked_at              :datetime
 #  tokens                 :text(65535)
-#  confirm_success_url    :string(255)
+#
+
 
 
 require 'test_helper'

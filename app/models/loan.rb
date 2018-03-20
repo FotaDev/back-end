@@ -12,6 +12,7 @@
 #
 
 
+
 class Loan < ApplicationRecord
   belongs_to :hire
 end

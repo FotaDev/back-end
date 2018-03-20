@@ -1,9 +1,8 @@
 class CreateStocks < ActiveRecord::Migration[5.1]
   def change
     create_table :stocks do |t|
+      t.belongs_to :item, index: true
       t.string :barcode
-      t.integer :item_id
-      t.integer :size_id
       t.string :make
       t.string :model
       t.integer :condition
