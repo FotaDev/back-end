@@ -103,19 +103,19 @@ Hire.create(
 )
 
 Size.create(
-  size: 'small'
+  details: 'small'
 )
 
 Size.create(
-  size: 'large'
+  details: 'large'
 )
 
 Size.create(
-  size: '38'
+  details: '38'
 )
 
 Size.create(
-  size: 'N/A'
+  details: 'N/A'
 )
 
 Item.create(
@@ -135,7 +135,7 @@ Item.create(
 
 Item.create(
   description: 'gloves',
-  size: Size.second
+  size: Size.first
 )
 
 Item.create(
@@ -173,7 +173,6 @@ Order.create(
 
 Stock.create(
   item_id: 1,
-  size: Size.first,
   barcode: 12345,
   make: 'Adidaz',
   model: 'Adidaz Cipkaz'
@@ -181,7 +180,6 @@ Stock.create(
 
 Stock.create(
   item_id: 1,
-  size: Size.second,
   barcode: 123456,
   make: 'Adidaz',
   model: 'Adidaz Cipkaz'
@@ -189,7 +187,6 @@ Stock.create(
 
 Stock.create(
   item_id: 3,
-  size: Size.third,
   barcode: 39837,
   make: 'Pumba',
   model: 'Pr0 xP'
@@ -197,7 +194,6 @@ Stock.create(
 
 Stock.create(
   item_id: 2,
-  size: Size.second,
   barcode: 000223,
   make: 'Umboro',
   model: 'Umboro Samba'
@@ -205,7 +201,6 @@ Stock.create(
 
 Stock.create(
   item_id: 2,
-  size: Size.second,
   barcode: 0002233,
   make: 'Umboro',
   model: 'Umboro Samba'
@@ -213,7 +208,6 @@ Stock.create(
 
 Stock.create(
   item_id: 3,
-  size: Size.where(size:"N/A").first,
   barcode: '',
   make: 'Philips',
   model: 'Long Life Battery'

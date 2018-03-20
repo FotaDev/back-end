@@ -9,6 +9,7 @@
 #  name                   :string(255)
 #  surname                :string(255)
 #  telephone              :string(255)
+#  confirm_success_url    :string(255)
 #  provider               :string(255)      default("email"), not null
 #  uid                    :string(255)      default(""), not null
 #  email                  :string(255)      default(""), not null
@@ -33,7 +34,6 @@
 #  tokens                 :text(65535)
 #
 
-
 class User < ApplicationRecord
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
@@ -44,7 +44,6 @@ class User < ApplicationRecord
 
   belongs_to :group
   has_many :hires, through: :group
-
 
 
 #  def active_for_authentication?

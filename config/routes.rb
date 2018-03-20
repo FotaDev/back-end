@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :items
   resources :sizes
   resources :orders
+  resources :stocks
+  resources :multistocks
 
   resources :hires
   root to: 'hires#index'

@@ -4,14 +4,17 @@
 #
 #  id             :integer          not null, primary key
 #  user_id        :integer
-#  group_id       :integer
 #  collect_date   :datetime
 #  return_date    :datetime
 #  status         :integer
 #  band           :integer
 #  reference      :text(65535)
 #  invoice_number :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  group_id       :integer
 #
+
 
 class Hire < ApplicationRecord
   belongs_to :user
@@ -19,6 +22,7 @@ class Hire < ApplicationRecord
 
   has_many :loans
   has_many :orders
+
   enum status: [:not_collected, :collected, :returned, :not_returned, :lost, :other]
   scope :collected_before, ->(time) { where("collect_date < ?", time) }
   scope :collected_after, ->(time) { where("collect_date > ?", time) }
@@ -31,5 +35,9 @@ class Hire < ApplicationRecord
 
   def past_hires
     self.returned_before(Date.today)
+  end
+
+  def as_json(options=nil)
+    super(include: { orders: { include: { item: { include: :size } } } })
   end
 end
