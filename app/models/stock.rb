@@ -15,18 +15,13 @@
 #
 
 class Stock < ApplicationRecord
-  before_save :checkMakeModelMatch
-
   belongs_to :item
+  has_one :loan
 
   validates :make, :model, :barcode, presence: true
 
   def as_json(options=nil)
     super({ include: { item: { include: :size } } })
-  end
-
-  def checkMakeModelMatch
-  # TODO make sure that all stocks with the same item_id have the same value for 'model' and 'make'
   end
 
 end

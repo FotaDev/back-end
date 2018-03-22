@@ -148,6 +148,31 @@ Item.create(
   size: Size.fourth
 )
 
+Item.create(
+  description: '1-person Tent Poles',
+  size: Size.fourth
+)
+
+Item.create(
+  description: '3-person Tent Poles',
+  size: Size.fourth
+)
+
+Item.create(
+  description: '14 Tent Pegs',
+  size: Size.fourth
+)
+
+Item.create(
+  description: '1-person Tent (sheets)',
+  size: Size.fourth
+)
+
+Item.create(
+  description: '3-person Tent (sheets)',
+  size: Size.fourth
+)
+
 Order.create(
   hire_id: 1,
   item_id: 1,
@@ -216,4 +241,48 @@ Stock.create(
 Multistock.create(
   stock_id: 6,
   actual_quantity: 150
+)
+
+Pack.create(
+  name: "TP1"
+)
+
+Pack.create(
+  name: "TP3"
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP1"),
+  item: Item.find_by(description: "1-person Tent Poles"),
+  item_quantity: 1
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP1"),
+  item: Item.find_by(description: "1-person Tent (sheets)"),
+  item_quantity: 1
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP1"),
+  item: Item.find_by(description: "14 Tent Pegs"),
+  item_quantity: 1
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP3"),
+  item: Item.find_by(description: "3-person Tent Poles"),
+  item_quantity: 1
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP3"),
+  item: Item.find_by(description: "3-person Tent (sheets)"),
+  item_quantity: 1
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP3"),
+  item: Item.find_by(description: "14 Tent Pegs"),
+  item_quantity: 1
 )

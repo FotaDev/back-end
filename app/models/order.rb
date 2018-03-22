@@ -19,6 +19,7 @@ class Order < ApplicationRecord
   validates :request, presence: true
 
   def as_json(options=nil)
-    super({ include: { item: { include: :size } } })
+    # super({ include: { item: { include: :size } } })
+    super(include: { hire: { include: [:user, :group] }, item: { include: :size } } )
   end
 end

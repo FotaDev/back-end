@@ -26,7 +26,7 @@ class MultistocksController < ApplicationController
   end
 
   def set_multistock
-    @multistock = Order.find(params[:id])
+    @multistock = Multistock.find(params[:id])
   end
 
   private

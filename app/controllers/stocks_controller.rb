@@ -26,7 +26,7 @@ class StocksController < ApplicationController
   end
 
   def set_stock
-    @stock = Order.find(params[:id])
+    @stock = Stock.find(params[:id])
   end
 
   private

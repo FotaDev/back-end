@@ -21,9 +21,12 @@ class Item < ApplicationRecord
   has_many :stocks
   belongs_to :size
 
+  has_many :item_packs
+  has_many :packs, through: :item_packs
+
   validates :description, presence: true
 
   def as_json(options=nil)
-    super(:include => [:size, :stocks])
+    super(include: [:size, :packs, :stocks])
   end
 end
