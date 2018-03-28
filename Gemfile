@@ -51,6 +51,8 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'pry-rails', '~> 0.3.4'
+  gem "database_cleaner"
+  gem "rspec-rails"
 end
 
 group :development do
