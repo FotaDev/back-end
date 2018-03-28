@@ -53,6 +53,9 @@ group :development, :test do
   gem 'pry-rails', '~> 0.3.4'
   gem "database_cleaner"
   gem "rspec-rails"
+  gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+  gem 'factory_girl_rails'
+
 end
 
 group :development do
