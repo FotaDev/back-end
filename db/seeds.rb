@@ -6,31 +6,30 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Group.create(
-  name: 'Group 1',
-  address: 'Fake Street 1'
-)
-Group.create(
-  name: 'Group 2',
-  address: 'Calle Falsa 2'
-)
-Group.create(
-  name: 'Group 3',
-  address: 'Bacon Street 22'
-)
+20.times do 
+  Group.create(
+    name: Faker::Name.name,
+    address: Faker::Address.full_address,
+  ) 
+end
 
-User.create(
-  username: 'Admin 1',
-  email: 'car@los.com',
-  password: '111111',
-  group_id: 1
-)
-User.create(
-  username: 'Admin 2',
-  email: 'user2@test.com',
-  password: '111111',
-  group_id: 2
-)
+2.times do 
+  User.create(
+    username: Faker::Name.name,
+    email: Faker::Internet.email,
+    password: Faker::Internet.password,
+    group_id: Group.first,
+  )
+end
+
+2.times do 
+  User.create(
+    username: Faker::Name.name,
+    email: Faker::Internet.email,
+    password: Faker::Internet.password,
+    group_id: Group.second
+  )
+end
 
 # Past Hire
 
