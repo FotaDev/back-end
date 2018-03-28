@@ -45,7 +45,6 @@ class User < ApplicationRecord
   belongs_to :group
   has_many :hires, through: :group
 
-
 #  def active_for_authentication?
 #    super && approved?
 #  end

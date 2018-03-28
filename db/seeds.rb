@@ -37,8 +37,8 @@ User.create(
 Hire.create(
   user_id: 1,
   group_id: 1,
-  collect_date: Date.yesterday - 2.month,
-  return_date: Date.today - 1.months,
+  collect_date: Date.yesterday - 2.months,
+  return_date: Date.today - 1.month,
   status: 2,
   band: 3,
   reference: 'Another text of this Hire',
@@ -48,8 +48,8 @@ Hire.create(
 Hire.create(
   user_id: 1,
   group_id: 1,
-  collect_date: 2.days.ago - 1.month,
-  return_date: 1.week.ago - 1.months,
+  collect_date: 2.weeks.ago - 1.month,
+  return_date: 1.week.ago - 1.month,
   status: 2,
   band: 3,
   reference: 'Another text of this Hire',
@@ -94,8 +94,8 @@ Hire.create(
 Hire.create(
   user_id: 1,
   group_id: 1,
-  collect_date: 2.days + 1.week,
-  return_date: Date.tomorrow + 1.weeks,
+  collect_date: Date.tomorrow + 1.week,
+  return_date: Date.tomorrow + 2.weeks,
   status: 3,
   band: 6,
   reference: 'More text that I have to write',
@@ -232,8 +232,8 @@ Stock.create(
 )
 
 Stock.create(
-  item_id: 3,
-  barcode: '',
+  item_id: 6,
+  barcode: 2134123,
   make: 'Philips',
   model: 'Long Life Battery'
 )
@@ -285,4 +285,9 @@ ItemPack.create(
   pack: Pack.find_by(name: "TP3"),
   item: Item.find_by(description: "14 Tent Pegs"),
   item_quantity: 1
+)
+
+Loan.create(
+  hire: Hire.first,
+  stock: Stock.first
 )

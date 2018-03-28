@@ -23,6 +23,8 @@ class Hire < ApplicationRecord
   has_many :loans
   has_many :orders
 
+  # validates :collect_date, :return_date, :band, presence: true
+
   enum status: [:not_collected, :collected, :returned, :not_returned, :lost, :other]
   scope :collected_before, ->(time) { where("collect_date < ?", time) }
   scope :collected_after, ->(time) { where("collect_date > ?", time) }

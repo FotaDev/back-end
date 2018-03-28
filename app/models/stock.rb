@@ -17,6 +17,7 @@
 class Stock < ApplicationRecord
   belongs_to :item
   has_one :loan
+  has_one :multistock
 
   validates :make, :model, :barcode, presence: true
 

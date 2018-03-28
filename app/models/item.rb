@@ -25,6 +25,7 @@ class Item < ApplicationRecord
   has_many :packs, through: :item_packs
 
   validates :description, presence: true
+  # validates :description, :browseable, :saleable, :category, presence: true
 
   def as_json(options=nil)
     super(include: [:size, :packs, :stocks])

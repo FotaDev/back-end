@@ -29,8 +29,8 @@ class HiresController < ApplicationController
   end
 
   def show
-  @Hire = Hire.find(params[:id])
-  respond_with(@Hire)
+    @Hire = Hire.find(params[:id])
+    respond_with(@Hire)
   end
 
   def update
