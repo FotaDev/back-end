@@ -1,0 +1,2 @@
+module MultistocksHelper
+end

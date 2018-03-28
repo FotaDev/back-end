@@ -1,6 +1,15 @@
-class Size < ApplicationRecord
-  has_many :items, foreign_key: :size, primary_key: :size
-  has_many :stocks, through: :item, foreign_key: :size, primary_key: :size
+# == Schema Information
+#
+# Table name: sizes
+#
+#  id         :integer          not null, primary key
+#  details    :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 
-  validates :size, presence: true
+class Size < ApplicationRecord
+  has_many :items
+
+  validates :details, presence: true
 end

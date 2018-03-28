@@ -37,8 +37,8 @@ User.create(
 Hire.create(
   user_id: 1,
   group_id: 1,
-  collect_date: Date.yesterday - 2.month,
-  return_date: Date.today - 1.months,
+  collect_date: Date.yesterday - 2.months,
+  return_date: Date.today - 1.month,
   status: 2,
   band: 3,
   reference: 'Another text of this Hire',
@@ -48,8 +48,8 @@ Hire.create(
 Hire.create(
   user_id: 1,
   group_id: 1,
-  collect_date: 2.days.ago - 1.month,
-  return_date: 1.week.ago - 1.months,
+  collect_date: 2.weeks.ago - 1.month,
+  return_date: 1.week.ago - 1.month,
   status: 2,
   band: 3,
   reference: 'Another text of this Hire',
@@ -94,8 +94,8 @@ Hire.create(
 Hire.create(
   user_id: 1,
   group_id: 1,
-  collect_date: 2.days + 1.week,
-  return_date: Date.tomorrow + 1.weeks,
+  collect_date: Date.tomorrow + 1.week,
+  return_date: Date.tomorrow + 2.weeks,
   status: 3,
   band: 6,
   reference: 'More text that I have to write',
@@ -103,19 +103,19 @@ Hire.create(
 )
 
 Size.create(
-  size: 'small'
+  details: 'small'
 )
 
 Size.create(
-  size: 'large'
+  details: 'large'
 )
 
 Size.create(
-  size: '38'
+  details: '38'
 )
 
 Size.create(
-  size: 'N/A'
+  details: 'N/A'
 )
 
 Item.create(
@@ -135,7 +135,7 @@ Item.create(
 
 Item.create(
   description: 'gloves',
-  size: Size.second
+  size: Size.first
 )
 
 Item.create(
@@ -145,6 +145,31 @@ Item.create(
 
 Item.create(
   description: 'battery',
+  size: Size.fourth
+)
+
+Item.create(
+  description: '1-person Tent Poles',
+  size: Size.fourth
+)
+
+Item.create(
+  description: '3-person Tent Poles',
+  size: Size.fourth
+)
+
+Item.create(
+  description: '14 Tent Pegs',
+  size: Size.fourth
+)
+
+Item.create(
+  description: '1-person Tent (sheets)',
+  size: Size.fourth
+)
+
+Item.create(
+  description: '3-person Tent (sheets)',
   size: Size.fourth
 )
 
@@ -173,7 +198,6 @@ Order.create(
 
 Stock.create(
   item_id: 1,
-  size: Size.first,
   barcode: 12345,
   make: 'Adidaz',
   model: 'Adidaz Cipkaz'
@@ -181,7 +205,6 @@ Stock.create(
 
 Stock.create(
   item_id: 1,
-  size: Size.second,
   barcode: 123456,
   make: 'Adidaz',
   model: 'Adidaz Cipkaz'
@@ -189,7 +212,6 @@ Stock.create(
 
 Stock.create(
   item_id: 3,
-  size: Size.third,
   barcode: 39837,
   make: 'Pumba',
   model: 'Pr0 xP'
@@ -197,7 +219,6 @@ Stock.create(
 
 Stock.create(
   item_id: 2,
-  size: Size.second,
   barcode: 000223,
   make: 'Umboro',
   model: 'Umboro Samba'
@@ -205,16 +226,14 @@ Stock.create(
 
 Stock.create(
   item_id: 2,
-  size: Size.second,
   barcode: 0002233,
   make: 'Umboro',
   model: 'Umboro Samba'
 )
 
 Stock.create(
-  item_id: 3,
-  size: Size.where(size:"N/A").first,
-  barcode: '',
+  item_id: 6,
+  barcode: 2134123,
   make: 'Philips',
   model: 'Long Life Battery'
 )
@@ -222,4 +241,53 @@ Stock.create(
 Multistock.create(
   stock_id: 6,
   actual_quantity: 150
+)
+
+Pack.create(
+  name: "TP1"
+)
+
+Pack.create(
+  name: "TP3"
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP1"),
+  item: Item.find_by(description: "1-person Tent Poles"),
+  item_quantity: 1
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP1"),
+  item: Item.find_by(description: "1-person Tent (sheets)"),
+  item_quantity: 1
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP1"),
+  item: Item.find_by(description: "14 Tent Pegs"),
+  item_quantity: 1
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP3"),
+  item: Item.find_by(description: "3-person Tent Poles"),
+  item_quantity: 1
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP3"),
+  item: Item.find_by(description: "3-person Tent (sheets)"),
+  item_quantity: 1
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP3"),
+  item: Item.find_by(description: "14 Tent Pegs"),
+  item_quantity: 1
+)
+
+Loan.create(
+  hire: Hire.first,
+  stock: Stock.first
 )
