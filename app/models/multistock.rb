@@ -17,4 +17,8 @@ class Multistock < ApplicationRecord
   def as_json(options = nil)
     super(include: {stock: {include: {item: {include: :size}}}})
   end
+
+  def self.joins(i)
+    # code here
+  end
 end

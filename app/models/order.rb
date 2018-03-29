@@ -25,46 +25,59 @@ class Order < ApplicationRecord
     @collection_date = self.hire.collect_date
     @return_date = self.hire.return_date
 
-    # Count how many of this item we have
-    @stock_quantity = Stock.where(item_id: @item).count
+    puts "Request amount: #{@requested_amount}"
+
+    # Multistock.joins(:stock).where(:stocks => {:item_id => 1})
+    # Stock.includes(:multistock).where(item_id: 3)
+    # Stock.includes(:multistock).where(item_id: 6).first.multistock
+    # Stock.left_joins(:multistock).where(item_id: 1)
+    # Multistock.joins(:stock).where(:stocks =>  {:item_id => 1}).exists?
+
+    # Count how many of this item we have - first check if it is not a multistock
+    if Multistock.left_joins(:stock).where(:stocks => {:item_id => @item}).exists?
+      @stock_quantity = Multistock.left_joins(:stock).where(:stocks => {:item_id => @item}).first.actual_quantity
+    else
+      @stock_quantity = Stock.where(item_id: @item).count
+    end
+
+    puts "Stock quantity: #{@stock_quantity}"
 
     if @stock_quantity >= @requested_amount
-      # Find all overlapping hires and associated orders
-      # where return date is between @collection_date and @return_date of this hire
-      # where orders were placed on the same item
+      # Find all orders that were placed on the same item
+      # where return date is between collection_date and return_date of this hire
       @overlapping_hires = Order.joins(:hire)
                                .where(item_id: @item)
-                               .where(hires: { return_date: @collection_date..@return_date })
-
-      puts(@overlapping_hires)
+                               .where(hires: {return_date: @collection_date..@return_date})
 
       total_booked = 0
 
       @overlapping_hires.each do |order|
-        puts("order.request: ")
-        puts(order.request)
         total_booked += order.request
       end
 
-      puts("total_booked: ")
-      puts(total_booked)
+      puts "Total booked excluding this order: #{total_booked}"
 
       @stock_quantity -= total_booked
-      puts("stock_quantity: ")
-      puts(@stock_quantity)
+      puts "Stock quantity minus overlapping hires: #{@stock_quantity}"
+      puts "Stock quantity minus requested amount: #{@stock_quantity - @requested_amount}"
 
-      if @stock_quantity < 0
-        errors.add(:base, "not enough in stock")
+      # if there is less stock than requested amount after subtracting amounts on overlapping hires
+      if @stock_quantity < @requested_amount
+        puts "Not enough stock, order rejected"
+        errors.add(:base, "Not enough stock, order rejected")
         throw :abort
+      else
+        puts "Sufficient stock, order accepted"
       end
     else
-      errors.add(:base, "not enough in stock")
+      puts "Not enough stock, order rejected"
+      errors.add(:base, "Not enough stock, order rejected")
       throw :abort
     end
   end
 
-  def as_json(options=nil)
+  def as_json(options = nil)
     # super({ include: { item: { include: :size } } })
-    super(include: { hire: { include: [:user, :group] }, item: { include: :size } } )
+    super(include: {hire: {include: [:user, :group]}, item: {include: :size}})
   end
 end

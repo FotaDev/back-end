@@ -173,29 +173,6 @@ Item.create(
   size: Size.fourth
 )
 
-Order.create(
-  hire_id: 1,
-  item_id: 1,
-  request: 5
-)
-
-Order.create(
-  hire_id: 1,
-  item_id: 2,
-  request: 10
-)
-
-Order.create(
-  hire_id: 2,
-  item_id: 1,
-  request: 3
-)
-
-Order.create(
-  hire_id: 2,
-  item_id: 2
-)
-
 Stock.create(
   item_id: 1,
   barcode: 12345,
@@ -239,8 +216,38 @@ Stock.create(
 )
 
 Multistock.create(
-  stock_id: 6,
-  actual_quantity: 150
+    stock_id: 6,
+    actual_quantity: 150
+)
+
+Order.create(
+  hire_id: 1,
+  item_id: 1,
+  request: 1
+)
+
+Order.create(
+  hire_id: 1,
+  item_id: 2,
+  request: 1
+)
+
+Order.create(
+  hire_id: 2,
+  item_id: 1,
+  request: 1
+)
+
+Order.create(
+  hire_id: 2,
+  item_id: 2,
+  request: 1
+)
+
+Order.create(
+  hire_id: 2,
+  item_id: 6,
+  request: 5
 )
 
 Pack.create(

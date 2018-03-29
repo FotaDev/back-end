@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
     @order = Order.create(order_params)
 
     if @order.errors.nil? == false
-      head :http_version_not_supported
+      head :precondition_failed
       return
     end
 
