@@ -32,10 +32,31 @@ class Order < ApplicationRecord
     # Stock.includes(:multistock).where(item_id: 6).first.multistock
     # Stock.left_joins(:multistock).where(item_id: 1)
     # Multistock.joins(:stock).where(:stocks =>  {:item_id => 1}).exists?
+    #
+    # Stock.left_joins(:multistock).select('stocks.id, stocks.make, multistocks.actual_quantity as kurwa')
+    # Stock.left_joins(:multistock).select('stocks.id', 'stocks.make', 'multistocks.actual_quantity')
+    # Stock.left_joins(:multistock).select(:id, :make, :'multistocks.actual_quantity').references(:multistock)
+    # Stock.select(:id, :make, :'multistocks.actual_quantity').left_joins(:multistock).last.actual_quantity
+    #
+    # Stock.select(:id, :make, :'multistocks.actual_quantity').left_joins(:multistock)
+    # Stock.select(:id, :make, :'multistocks.actual_quantity').left_joins(:multistock).where(item_id: 1)
+    # foo.each do |stock|
+    # count = 0
+    # if stock.multistock.nil?
+    #   puts 'fart'
+    # else
+    #   count += stock.multistock.actual_quantity
+    # end
+    # puts count
+    #
+    # Loan.includes(:stock).where(stocks: { item_id: 1 })
+    # Loan.includes(:stock, :hire).where(stocks: { item_id: 1 }, hire_id: 2)
+    # THE TICKET IN PROGRESS
+    # Loan.includes(:stock, :hire).where(stocks: { item_id: 1 }, hires: {})
 
     # Count how many of this item we have - first check if it is not a multistock
     if Multistock.left_joins(:stock).where(:stocks => {:item_id => @item}).exists?
-      @stock_quantity = Multistock.left_joins(:stock).where(:stocks => {:item_id => @item}).first.actual_quantity
+      @stock_quantity = Stock.find_by(item_id: @item).multistock.actual_quantity
     else
       @stock_quantity = Stock.where(item_id: @item).count
     end
@@ -80,4 +101,5 @@ class Order < ApplicationRecord
     # super({ include: { item: { include: :size } } })
     super(include: {hire: {include: [:user, :group]}, item: {include: :size}})
   end
+
 end
