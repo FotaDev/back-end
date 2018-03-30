@@ -12,6 +12,7 @@ RSpec.describe User, type: :model do
   it "is invalid incorrect values" do
 
     u = User.create
+    u.update(username: "ojete")
     expect(u).to be_invalid
 
   end
@@ -22,7 +23,6 @@ RSpec.describe User, type: :model do
     u1 = create(:user, email: 'john@example.com', group_id: group.id)
     u2 = User.new(email: u1.email)
     u2.valid?
-    binding.pry
     expect(u2.errors[:email]).to include("has already been taken")
 
   end
