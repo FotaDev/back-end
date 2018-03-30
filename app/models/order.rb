@@ -59,8 +59,12 @@ class Order < ApplicationRecord
     # THE TICKET IN PROGRESS
     # Loan.includes(:stock, :hire).where(stocks: { item_id: 1 }, hires: {})
     # Loan.includes(:stock, :hire).where(stocks: { item_id: 1 }, "hires.return_date" => Date.today-1.year..Date.today)
+    # Pack.includes(:item_packs).where(item_packs: { item_id: @item })
+    # Pack.joins(:item_packs).where(item_packs: { item_id:9 }).pluck(:id, 'item_packs.item_id', 'item_packs.item_quantity')
+    # Order.left_joins(:hire).where(item_id: 1, hires: { return_date: Date.today-2.months..Float::INFINITY })
+    # Loan.left_joins(:stock, :hire).where("item_id LIKE ? AND (return_date IS NULL OR return_date = '' OR return_date > ? OR return_date < NOW())", 1, dt1)
 
-    # PART 1 - count how many of this item we have - first check if it is not a multistock
+    # PART 1 - how many do we own?
     if Multistock.left_joins(:stock).where(:stocks => {:item_id => @item}).exists?
       @stock_quantity = Stock.find_by(item_id: @item).multistock.actual_quantity
     else
@@ -70,13 +74,19 @@ class Order < ApplicationRecord
     puts "-------Stock quantity: #{@stock_quantity}-------"
 
     # PART 2 - conflicting loans
-    sql = "SELECT COUNT(loans.id) as count FROM loans LEFT JOIN stocks ON stocks.id = loans.stock_id LEFT JOIN hires ON hires.id = loans.hire_id WHERE item_id LIKE #{@item} AND (return_date IS NULL OR return_date = '' OR return_date > #{@collection_date.strftime("%e-%m-%y %H:%M")} OR return_date < NOW())"
-    puts Loan.find_by_sql(sql).first.count
+    conflicting_loans = Loan.left_joins(:stock, :hire).where("item_id LIKE ? AND (return_date IS NULL OR return_date = '' OR return_date > ? OR return_date < NOW())", @item, @collection_date).count
+    puts @stock_quantity -= conflicting_loans
 
-    # PART 3.1 - find out if the size is in any packs
-    Pack.includes(:item_packs).where('item_packs.item_id' => @item)
-    Pack.includes(:item_packs).where(item_packs: { item_id: @item })
+    # PART 3
+    #   PART 3.1 - find out if this item is in any packs
+    # pack_qties = Pack.joins(:item_packs).where('item_packs.item_id' => @item).pluck('item_packs.item_id', 'item_packs.item_quantity')
+    pack_qties = Pack.joins(:item_packs).where('item_packs.item_id' => @item).select('packs.id', 'item_packs.item_id', 'item_packs.item_quantity')
+    pack_qties.each {|x|
+      puts x.item_quantity
+    }
 
+    #   PART 3.2 - find all hires which overlap with this one
+    Order.left_joins(:hire).where("item_id IN #{pack_qties} AND (return_date > ? OR return_date IS NULL OR return_date = '') AND collect_date < ? AND status NOT LIKE 'Cancelled'", @collection_date, @return_date)
 
 
     if @stock_quantity >= @requested_amount
