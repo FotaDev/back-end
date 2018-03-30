@@ -25,7 +25,12 @@ class Order < ApplicationRecord
     @collection_date = self.hire.collect_date
     @return_date = self.hire.return_date
 
+    puts "--------------Order details--------------"
+    puts "Item_id: #{@item}"
     puts "Request amount: #{@requested_amount}"
+    puts "Collection date: #{@collection_date}"
+    puts "Return date: #{@return_date}"
+    puts "-----------------------------------------"
 
     # Multistock.joins(:stock).where(:stocks => {:item_id => 1})
     # Stock.includes(:multistock).where(item_id: 3)
@@ -53,15 +58,26 @@ class Order < ApplicationRecord
     # Loan.includes(:stock, :hire).where(stocks: { item_id: 1 }, hire_id: 2)
     # THE TICKET IN PROGRESS
     # Loan.includes(:stock, :hire).where(stocks: { item_id: 1 }, hires: {})
+    # Loan.includes(:stock, :hire).where(stocks: { item_id: 1 }, "hires.return_date" => Date.today-1.year..Date.today)
 
-    # Count how many of this item we have - first check if it is not a multistock
+    # PART 1 - count how many of this item we have - first check if it is not a multistock
     if Multistock.left_joins(:stock).where(:stocks => {:item_id => @item}).exists?
       @stock_quantity = Stock.find_by(item_id: @item).multistock.actual_quantity
     else
       @stock_quantity = Stock.where(item_id: @item).count
     end
 
-    puts "Stock quantity: #{@stock_quantity}"
+    puts "-------Stock quantity: #{@stock_quantity}-------"
+
+    # PART 2 - conflicting loans
+    sql = "SELECT COUNT(loans.id) as count FROM loans LEFT JOIN stocks ON stocks.id = loans.stock_id LEFT JOIN hires ON hires.id = loans.hire_id WHERE item_id LIKE #{@item} AND (return_date IS NULL OR return_date = '' OR return_date > #{@collection_date.strftime("%e-%m-%y %H:%M")} OR return_date < NOW())"
+    puts Loan.find_by_sql(sql).first.count
+
+    # PART 3.1 - find out if the size is in any packs
+    Pack.includes(:item_packs).where('item_packs.item_id' => @item)
+    Pack.includes(:item_packs).where(item_packs: { item_id: @item })
+
+
 
     if @stock_quantity >= @requested_amount
       # Find all orders that were placed on the same item
@@ -76,22 +92,24 @@ class Order < ApplicationRecord
         total_booked += order.request
       end
 
+      puts "------------Validation details-----------"
       puts "Total booked excluding this order: #{total_booked}"
 
       @stock_quantity -= total_booked
       puts "Stock quantity minus overlapping hires: #{@stock_quantity}"
       puts "Stock quantity minus requested amount: #{@stock_quantity - @requested_amount}"
+      puts "-----------------------------------------"
 
       # if there is less stock than requested amount after subtracting amounts on overlapping hires
       if @stock_quantity < @requested_amount
-        puts "Not enough stock, order rejected"
+        puts "----Not enough stock, order rejected----"
         errors.add(:base, "Not enough stock, order rejected")
         throw :abort
       else
-        puts "Sufficient stock, order accepted"
+        puts "----Sufficient stock, order accepted----"
       end
     else
-      puts "Not enough stock, order rejected"
+      puts "----Not enough stock, order rejected----"
       errors.add(:base, "Not enough stock, order rejected")
       throw :abort
     end
