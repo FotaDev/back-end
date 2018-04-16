@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show]
+
   respond_to :json
 
   def index
@@ -13,6 +14,11 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.create(order_params)
+
+    if @order.errors.nil? == false
+      head :http_version_not_supported
+      return
+    end
 
     if @order.save
       flash[:success] = "Created successfully"

@@ -49,3 +49,226 @@ Hire.create(
   invoice_number: 15
 )
 
+Hire.create(
+  user_id: 2,
+  group_id: 2,
+  collect_date: Date.today - 1.day,
+  return_date: Date.today + 1.week,
+  status: 0,
+  band: 1,
+  reference: 'This one has not been collected yet',
+  invoice_number: 191_212
+)
+# Future
+
+Hire.create(
+  user_id: 1,
+  group_id: 1,
+  collect_date: Date.tomorrow + 1.week,
+  return_date: Date.tomorrow + 2.weeks,
+  status: 3,
+  band: 6,
+  reference: 'More text that I have to write',
+  invoice_number: 15
+)
+
+Hire.create(
+  user_id: 1,
+  group_id: 1,
+  collect_date: Date.tomorrow + 1.week,
+  return_date: Date.tomorrow + 2.weeks,
+  status: 3,
+  band: 6,
+  reference: 'More text that I have to write',
+  invoice_number: 15
+)
+
+Size.create(
+  details: 'small'
+)
+
+Size.create(
+  details: 'large'
+)
+
+Size.create(
+  details: '38'
+)
+
+Size.create(
+  details: 'N/A'
+)
+
+Item.create(
+  description: 'jacket',
+  size: Size.first
+)
+
+Item.create(
+  description: 'jacket',
+  size: Size.second
+)
+
+Item.create(
+  description: 'trousers',
+  size: Size.first
+)
+
+Item.create(
+  description: 'gloves',
+  size: Size.first
+)
+
+Item.create(
+  description: 'boot',
+  size: Size.third
+)
+
+Item.create(
+  description: 'battery',
+  size: Size.fourth
+)
+
+Item.create(
+  description: '1-person Tent Poles',
+  size: Size.fourth
+)
+
+Item.create(
+  description: '3-person Tent Poles',
+  size: Size.fourth
+)
+
+Item.create(
+  description: '14 Tent Pegs',
+  size: Size.fourth
+)
+
+Item.create(
+  description: '1-person Tent (sheets)',
+  size: Size.fourth
+)
+
+Item.create(
+  description: '3-person Tent (sheets)',
+  size: Size.fourth
+)
+
+Order.create(
+  hire_id: 1,
+  item_id: 1,
+  request: 5
+)
+
+Order.create(
+  hire_id: 1,
+  item_id: 2,
+  request: 10
+)
+
+Order.create(
+  hire_id: 2,
+  item_id: 1,
+  request: 3
+)
+
+Order.create(
+  hire_id: 2,
+  item_id: 2
+)
+
+Stock.create(
+  item_id: 1,
+  barcode: 12345,
+  make: 'Adidaz',
+  model: 'Adidaz Cipkaz'
+)
+
+Stock.create(
+  item_id: 1,
+  barcode: 123456,
+  make: 'Adidaz',
+  model: 'Adidaz Cipkaz'
+)
+
+Stock.create(
+  item_id: 3,
+  barcode: 39837,
+  make: 'Pumba',
+  model: 'Pr0 xP'
+)
+
+Stock.create(
+  item_id: 2,
+  barcode: 000223,
+  make: 'Umboro',
+  model: 'Umboro Samba'
+)
+
+Stock.create(
+  item_id: 2,
+  barcode: 0002233,
+  make: 'Umboro',
+  model: 'Umboro Samba'
+)
+
+Stock.create(
+  item_id: 6,
+  barcode: 2134123,
+  make: 'Philips',
+  model: 'Long Life Battery'
+)
+
+Multistock.create(
+  stock_id: 6,
+  actual_quantity: 150
+)
+
+Pack.create(
+  name: "TP1"
+)
+
+Pack.create(
+  name: "TP3"
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP1"),
+  item: Item.find_by(description: "1-person Tent Poles"),
+  item_quantity: 1
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP1"),
+  item: Item.find_by(description: "1-person Tent (sheets)"),
+  item_quantity: 1
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP1"),
+  item: Item.find_by(description: "14 Tent Pegs"),
+  item_quantity: 1
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP3"),
+  item: Item.find_by(description: "3-person Tent Poles"),
+  item_quantity: 1
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP3"),
+  item: Item.find_by(description: "3-person Tent (sheets)"),
+  item_quantity: 1
+)
+
+ItemPack.create(
+  pack: Pack.find_by(name: "TP3"),
+  item: Item.find_by(description: "14 Tent Pegs"),
+  item_quantity: 1
+)
+
+Loan.create(
+  hire: Hire.first,
+  stock: Stock.first
+)

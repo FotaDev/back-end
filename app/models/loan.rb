@@ -11,7 +11,11 @@
 #  updated_at :datetime         not null
 #
 
-
 class Loan < ApplicationRecord
   belongs_to :hire
+  belongs_to :stock
+
+  def as_json(options=nil)
+    super(include: { hire: { include: [:user, :group] }, stock: { include: { item: { include: :size } } } } )
+  end
 end

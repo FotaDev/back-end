@@ -12,8 +12,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :role, :name, :surname, :telephone, :provider, :uid,:group_id, :confirm_success_url, :registration, ])
   end
 
-
-
   def ensure_json_request  
     return if request.format == :json
     render :nothing => true, :status => 406  
