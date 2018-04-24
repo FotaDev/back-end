@@ -25,7 +25,7 @@ class Hire < ApplicationRecord
 
   # validates :collect_date, :return_date, :band, presence: true
 
-  enum status: [:not_collected, :collected, :returned, :not_returned, :lost, :other]
+  enum status: [:cancelled, :not_collected, :collected, :returned, :not_returned, :lost, :other]
   scope :collected_before, ->(time) { where("collect_date < ?", time) }
   scope :collected_after, ->(time) { where("collect_date > ?", time) }
 
