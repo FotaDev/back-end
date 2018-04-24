@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20180322102832) do
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "size_id"
     t.string "description"
+    t.string "url"
     t.float "band_price", limit: 24
     t.float "sale_price", limit: 24
     t.boolean "saleable"
